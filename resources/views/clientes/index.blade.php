@@ -2,8 +2,7 @@
 
 @section('css')
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.5.2/css/bootstrap.css">
-<link rel="stylesheet" href="https://cdn.datatables.net/1.11.3/css/dataTables.bootstrap4.min.css">
-<link rel="stylesheet" href="https://cdn.datatables.net/buttons/2.1.0/css/buttons.bootstrap4.min.css">
+<link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/v/bs4/dt-1.11.3/b-2.1.1/r-2.2.9/datatables.min.css"/>
 @endsection
 @section('content')
         <div class="section-body">
@@ -54,15 +53,36 @@
                                         </tr>
                                     </tfoot>
                                 </table>
-                                 @section('js')
+                                @section('js')
                                 <script src="https://code.jquery.com/jquery-3.5.1.js"></script>
-                                <script src="https://cdn.datatables.net/1.11.3/js/jquery.dataTables.min.js"></script>
-                                <script src="https://cdn.datatables.net/1.11.3/js/dataTables.bootstrap4.min.js"></script>
+                                <script type="text/javascript" src="https://cdn.datatables.net/v/bs4/dt-1.11.3/b-2.1.1/r-2.2.9/datatables.min.js"></script>
+                                <!-- <script src="https://cdn.datatables.net/1.11.3/js/jquery.dataTables.min.js"></script> -->
+                                <!-- <script src="https://cdn.datatables.net/1.11.3/js/dataTables.bootstrap4.min.js"></script> -->
                                 <script src="https://cdnjs.cloudflare.com/ajax/libs/jszip/3.1.3/jszip.min.js"></script>
-                                >
                                 <script>
                                         $(document).ready(function() {
                                             var table = $('#example').DataTable( {
+                                                responsive: true,
+                                            language: {
+                                                sProcessing: "Procesando...",
+                                                sZeroRecords: "No se encontraron resultados",
+                                                sEmptyTable: "No hay ningún dato disponible en esta tabla",
+                                                sInfoEmpty: "Mostrando registros del 0 al 0 de un total de 0",
+                                                infoFiltered: "(Filtrado de _MAX_ total entradas)",
+                                                lengthMenu: "Mostrar _MENU_ Entradas",
+                                                info: "Mostrando _START_ a _END_ de _TOTAL_ Entradas",
+                                                sInfoPostFix: "",
+                                                sSearch: "Buscar:",
+                                                sUrl: "",
+                                                sInfoThousands: ",",
+                                                sLoadingRecords: "Cargando...",
+                                                oPaginate: {
+                                                sFirst: "Primero",
+                                                sLast: "Último",
+                                                sNext: "Siguiente",
+                                                sPrevious: "Anterior",
+                                                },
+                                            },
                                                 lengthMenu: [5,10,25,50]
                                             } ); } );
                                 </script>

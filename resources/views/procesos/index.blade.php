@@ -16,7 +16,7 @@
                                 <table id="example" class="table table-bordered display nowrap td-responsive" cellspacing="0" width="100%"> 
                                     <thead style="background-color:#6777ef">
                                         <tr>
-                                            <th scope="col" style="display: none;">Id</th>
+                                            <th scope="col" style="color:#fff;">Ver más</th>
                                             <th scope="col" style="color:#fff;">Radicado</th>
                                             <th scope="col" style="color:#fff;">Cliente Nombre</th>
                                             <th scope="col" style="color:#fff;">Contraparte Nombre</th>
@@ -60,7 +60,7 @@
                                     </tbody>
                                     <tfoot>
                                         <tr>
-                                            <th scope="col" style="display: none;">Id</th>
+                                            <th scope="col">Ver más</th>
                                             <th scope="col">Radicado</th>
                                             <th scope="col">Cliente Nombre</th>
                                             <th scope="col">Contraparte Nombre</th>
@@ -90,12 +90,12 @@
                                                 responsive: true,
                                             language: {
                                                 sProcessing: "Procesando...",
-                                                sLengthMenu: "Mostrar MENU registros",
                                                 sZeroRecords: "No se encontraron resultados",
-                                                sEmptyTable: "Ningún dato disponible en esta tabla",
-                                                sInfo: "Mostrando registros del START al END de un total de TOTAL",
+                                                sEmptyTable: "No hay ningún dato disponible en esta tabla",
                                                 sInfoEmpty: "Mostrando registros del 0 al 0 de un total de 0",
-                                                sInfoFiltered: "(filtrado de un total de MAX registros)",
+                                                infoFiltered: "(Filtrado de _MAX_ total entradas)",
+                                                lengthMenu: "Mostrar _MENU_ Entradas",
+                                                info: "Mostrando _START_ a _END_ de _TOTAL_ Entradas",
                                                 sInfoPostFix: "",
                                                 sSearch: "Buscar:",
                                                 sUrl: "",
@@ -106,11 +106,6 @@
                                                 sLast: "Último",
                                                 sNext: "Siguiente",
                                                 sPrevious: "Anterior",
-                                                },
-                                                oAria: {
-                                                sSortAscending: ": Activar para ordenar la columna de manera ascendente",
-                                                sSortDescending:
-                                                    ": Activar para ordenar la columna de manera descendente",
                                                 },
                                             },
                                                 lengthMenu: [5,10,25,50]
