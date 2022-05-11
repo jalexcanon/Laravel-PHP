@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 
 use App\Models\Blog;
+use Carbon\Carbon;
 
 class BlogController extends Controller
 {
@@ -22,20 +23,13 @@ class BlogController extends Controller
      */
     public function index()
     {       
-         //Con paginación
-         $blogs = Blog::paginate(5);
-         return view('blogs.index',compact('blogs'));
-         //al usar esta paginacion, recordar poner en el el index.blade.php este codigo  {!! $blogs->links() !!}    
+         return view('blogs.index');
+       
     }
 
-    /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
     public function create()
     {
-        return view('blogs.crear');
+        //return view('blogs.crear');
     }
 
     /**
@@ -46,14 +40,11 @@ class BlogController extends Controller
      */
     public function store(Request $request)
     {
-        request()->validate([
-            'titulo' => 'required',
-            'contenido' => 'required',
-        ]);
+        request()->validate(Blog::$rules);
     
-        Blog::create($request->all());
+        $event=Blog::create($request->all());
     
-        return redirect()->route('blogs.index');
+        //return redirect()->route('blogs.index');
     }
 
     /**
@@ -62,9 +53,10 @@ class BlogController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show($id)
+    public function show(Blog $event)
     {
-        //
+        $event= Blog::all();
+        return response()->json($event);
     }
 
     /**
@@ -73,9 +65,14 @@ class BlogController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function edit(Blog $blog)
+    public function edit($id)
     {
-        return view('blogs.editar',compact('blog'));
+       // return view('blogs.editar',compact('blog'));
+
+       $event = Blog::find($id);
+       $event->start=Carbon::createFromFormat('Y-m-d H:i:s', $event->start)->format('Y-m-d');
+       $event->end=Carbon::createFromFormat('Y-m-d H:i:s', $event->end)->format('Y-m-d');
+       return response()->json($event);
     }
 
     /**
@@ -85,16 +82,18 @@ class BlogController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Blog $blog)
-    {
-         request()->validate([
-            'titulo' => 'required',
-            'contenido' => 'required',
-        ]);
+    public function update(Request $request, Blog $event)
+    {   request()->validate(Blog::$rules);
+        $event->update($request->all());
+        return response()->json($event);
+         //request()->validate([
+            //'titulo' => 'required',
+            //'contenido' => 'required',
+       //]);
     
-        $blog->update($request->all());
+        //$blog->update($request->all());
     
-        return redirect()->route('blogs.index');
+        //return redirect()->route('blogs.index');
     }
 
     /**
@@ -103,10 +102,12 @@ class BlogController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Blog $blog)
-    {
-        $blog->delete();
+    public function destroy($id)
+    {   $event=Blog::find($id)->delete();
+
+        return response()->json($event);
+       // $blog->delete();
     
-        return redirect()->route('blogs.index');
+        //return redirect()->route('blogs.index');
     }
 }
